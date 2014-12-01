@@ -26,11 +26,17 @@ public class MainActivity extends Activity {
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this, AlarmBroadcastReceiver.class);
+        intent.putExtra("data", "1");
 
         PendingIntent operation = PendingIntent.getBroadcast(this, 1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
 
+        intent = new Intent(this, AlarmBroadcastReceiver.class);
+        intent.putExtra("data", "2");
+        operation = PendingIntent.getBroadcast(this, 1001, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 100000, operation);
     }
 
     @Override

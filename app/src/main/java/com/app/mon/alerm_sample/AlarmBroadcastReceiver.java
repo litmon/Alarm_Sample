@@ -11,6 +11,6 @@ import android.widget.Toast;
 public class AlarmBroadcastReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "アラームが呼ばれたよ！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "アラームが呼ばれたよ！" + intent.getStringExtra("data"), Toast.LENGTH_SHORT).show();
     }
 }
