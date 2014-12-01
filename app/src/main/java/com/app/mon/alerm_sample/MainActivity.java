@@ -21,22 +21,16 @@ public class MainActivity extends Activity {
     }
 
     public void setAlarm(View v){
-        Toast.makeText(this, "アラームボタンを押したよ！", Toast.LENGTH_SHORT).show();
-
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
+        // 結論：requestCodeさえ違えば大丈夫
         Intent intent = new Intent(this, AlarmBroadcastReceiver.class);
-        intent.putExtra("data", "1");
-
         PendingIntent operation = PendingIntent.getBroadcast(this, 1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
+        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000, operation);
 
         intent = new Intent(this, AlarmBroadcastReceiver.class);
-        intent.putExtra("data", "2");
         operation = PendingIntent.getBroadcast(this, 1001, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 100000, operation);
+        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, operation);
     }
 
     @Override
